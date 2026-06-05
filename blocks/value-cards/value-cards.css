@@ -1,0 +1,90 @@
+/* value-cards — lifted from prototype .cards3 / .vcard, scoped under .value-cards. */
+
+.value-cards {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 84px 24px;
+}
+
+.value-cards .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.value-cards h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.value-cards .cards3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.value-cards .vcard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: var(--sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.value-cards .vcard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--md);
+}
+
+.value-cards .vcard .ic {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--grad-coral);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.value-cards .vcard .ic svg {
+  width: 24px;
+  height: 24px;
+}
+
+.value-cards .vcard h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.value-cards .vcard p {
+  color: #3a3640;
+  margin: 0;
+}
+
+/* Subtle reveal — only active once JS marks the block ready; default visible. */
+.value-cards.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s var(--e-enter), transform 0.6s var(--e-enter);
+}
+
+.value-cards.reveal-ready .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .value-cards .cards3 { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .value-cards .vcard { transition: none; }
+  .value-cards.reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
+}

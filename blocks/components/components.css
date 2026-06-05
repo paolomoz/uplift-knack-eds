@@ -1,0 +1,79 @@
+/* components — lifted from prototype .grid6 / .ccard, scoped under .components. */
+
+.components {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 84px 24px;
+}
+
+.components .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.components h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.components .grid6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.components .ccard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: var(--sm);
+}
+
+.components .ccard .ic {
+  color: var(--primary);
+  margin-bottom: 12px;
+  line-height: 0;
+}
+
+.components .ccard .ic svg {
+  width: 26px;
+  height: 26px;
+}
+
+.components .ccard h3 {
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.components .ccard p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Subtle reveal — only active once JS marks the block ready; default visible. */
+.components.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s var(--e-enter), transform 0.6s var(--e-enter);
+}
+
+.components.reveal-ready .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .components .grid6 { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .components.reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
+}

@@ -1,0 +1,8 @@
+/* logos — lifted verbatim from the stardust prototype's .proof / .logos,
+   rescoped under .logos. The block element IS the section (.proof in the
+   prototype carried the `wrap` max-width too). */
+
+.logos { padding: 48px 0; max-width: 1180px; margin: 0 auto; }
+.logos p { text-align: center; color: var(--muted); font-weight: 600; margin-bottom: 24px; }
+.logos .logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 40px; align-items: center; filter: grayscale(1); opacity: .7; padding: 0; margin: 0; max-width: none; }
+.logos .logos span { font-weight: 800; font-size: 1.15rem; color: #8a8a8a; }

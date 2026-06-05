@@ -1,0 +1,101 @@
+/* comparison — lifted from prototype .compare / .cmp-grid / .cmp, scoped under .comparison. */
+
+.comparison {
+  background: var(--surface2);
+  padding: 84px 0;
+}
+
+.comparison .wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.comparison .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.comparison .eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0 0 12px;
+}
+
+.comparison h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.comparison .cmp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 14px;
+}
+
+.comparison .cmp {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+}
+
+.comparison .cmp.knack {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--lg);
+  transform: scale(1.03);
+}
+
+.comparison .cmp h3 {
+  font-size: 1.05rem;
+  margin: 0 0 14px;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.comparison .cmp ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  font-size: 0.93rem;
+}
+
+.comparison .cmp li {
+  display: flex;
+  gap: 9px;
+}
+
+.comparison .cmp li::before {
+  content: "\2715"; /* ✕ */
+  color: #c95;
+  font-weight: 700;
+}
+
+.comparison .cmp.knack li::before {
+  content: "\2713"; /* ✓ */
+  color: #9affd0;
+}
+
+.comparison .cmp .vs {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .comparison .cmp-grid { grid-template-columns: 1fr; }
+  .comparison .cmp.knack { transform: none; }
+}

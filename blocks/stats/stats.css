@@ -1,0 +1,38 @@
+/* stats — three big gradient-numbered outcome stats.
+   Lifted from prototype .stats / .stat; rescoped under .stats.
+   Tokens (--grad-coral, --muted) are global; do not redefine. */
+
+.stats {
+  padding: 84px 0;
+}
+
+.stats .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.stats .stat .n {
+  font-size: 3rem;
+  font-weight: 800;
+  background: var(--grad-coral);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.03em;
+}
+
+.stats .stat p {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+@media (width <= 900px) {
+  .stats .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

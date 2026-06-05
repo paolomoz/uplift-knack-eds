@@ -1,13 +1,14 @@
-.hlx/*
-coverage/*
-logs/*
-node_modules/*
+.hlx/
+coverage/
+logs/
+node_modules/
 
 helix-importer-ui
 .DS_Store
 *.bak
 .idea
-
-# Ensure these files are tracked
-!CLAUDE.md
-!AGENTS.md
+.wrangler
+.env
+node_modules/
+.DS_Store
+_da/

@@ -1,0 +1,58 @@
+/* faq — native <details> accordion.
+   Lifted from prototype .faq / details / summary; rescoped under .faq.
+   Tokens (--border, --primary, --muted) are global; do not redefine. */
+
+.faq {
+  padding: 84px 0;
+}
+
+.faq .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.faq .center.wrap,
+.faq .faq-list.wrap {
+  padding: 0 24px;
+}
+
+.faq .faq-list {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 4px;
+}
+
+.faq summary {
+  font-weight: 600;
+  font-size: 1.08rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.faq details[open] summary::after {
+  content: "–";
+}
+
+.faq details p {
+  margin-top: 12px;
+  color: var(--muted);
+}
