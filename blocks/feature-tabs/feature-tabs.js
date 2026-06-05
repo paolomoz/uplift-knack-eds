@@ -63,13 +63,24 @@ export default async function decorate(block) {
 
   const panels = [];
 
+  // Product screenshots are static brand assets in the EDS repo. Referenced
+  // directly (no EDS media optimization) so they always resolve.
+  const SHOTS = [
+    '/assets/media/screenshot-database-C8tkHKNi-5612.webp',
+    '/assets/media/screenshot-ai-IJ7IjnkO-3768.webp',
+    '/assets/media/screenshot-automate-zD7X5tm--c3fc.webp',
+    '/assets/media/screenshot-pages-BVcTJAC6-7647.webp',
+    '/assets/media/screenshot-users-B_MvJKAs-ee5b.webp',
+    '/assets/media/screenshot-publish-DR61zeJY-6a58.webp',
+  ];
+
   tabRows.forEach((row, i) => {
     const cells = [...row.children];
     const label = txt(cells[0]) || `Tab ${i + 1}`;
     const panelEyebrow = txt(cells[1]);
     const panelH3 = txt(cells[2]);
     const panelBody = txt(cells[3]);
-    const img = cells[4] ? cells[4].querySelector('picture, img') : null;
+    const shot = SHOTS[i];
     const id = `ft-panel-${i}`;
 
     const tab = document.createElement('button');
@@ -105,7 +116,13 @@ export default async function decorate(block) {
       copy.append(pb);
     }
     panel.append(copy);
-    if (img) panel.append(img.cloneNode(true));
+    if (shot) {
+      const im = document.createElement('img');
+      im.src = shot;
+      im.loading = 'lazy';
+      im.alt = panelH3 || label;
+      panel.append(im);
+    }
 
     panels.push(panel);
   });
