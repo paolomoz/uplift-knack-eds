@@ -16,16 +16,23 @@ export default async function decorate(block) {
   if (!rows.length) return;
   const frag = document.createDocumentFragment();
 
-  // ---- optional centered heading ----
+  // ---- optional heading / count row ----
+  // For listing grids the header may carry only a count ("105 app templates")
+  // with no <h2>, so on the .listing variant any single-cell first row is the
+  // header. Otherwise require an <h2> to avoid mistaking a card for a header.
+  const listing = block.classList.contains('listing');
   let start = 0;
   const firstCells = [...rows[0].children];
-  if (firstCells.length === 1 && firstCells[0].querySelector('h2')) {
+  if (firstCells.length === 1 && (firstCells[0].querySelector('h2') || listing)) {
     const cell = firstCells[0];
     const center = document.createElement('div');
     center.className = 'center';
-    const h2 = document.createElement('h2');
-    h2.textContent = text(cell.querySelector('h2'));
-    center.append(h2);
+    const h2src = cell.querySelector('h2');
+    if (h2src && text(h2src)) {
+      const h2 = document.createElement('h2');
+      h2.textContent = text(h2src);
+      center.append(h2);
+    }
     const lead = cell.querySelector('p');
     if (lead && text(lead)) {
       const l = document.createElement('p');
@@ -33,8 +40,7 @@ export default async function decorate(block) {
       l.textContent = text(lead);
       center.append(l);
     }
-    frag.append(center);
-    start = 1;
+    if (center.childNodes.length) { frag.append(center); start = 1; }
   }
 
   // ---- cards ----
