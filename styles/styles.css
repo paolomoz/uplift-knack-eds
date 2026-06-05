@@ -61,6 +61,17 @@ main div.section { display: unset; }
 .section > .default-content-wrapper,
 .section > .block-content { display: block; }
 
+/* Prose / default content on converted interior pages (readable measure +
+   vertical rhythm). Blocks live in .block-content, so they're unaffected. */
+main .section > .default-content { max-width: 820px; margin: 0 auto; padding: 40px 24px; }
+main .section > .default-content > h2 { font-size: clamp(1.55rem, 2.6vw, 2.1rem); letter-spacing: -.02em; line-height: 1.15; margin-bottom: 14px; }
+main .section > .default-content > h3 { font-size: 1.2rem; line-height: 1.2; margin: 24px 0 8px; }
+main .section > .default-content > p { margin: 0 0 14px; color: #3a3640; }
+main .section > .default-content > ul,
+main .section > .default-content > ol { margin: 0 0 16px; padding-left: 20px; display: grid; gap: 8px; color: #3a3640; }
+main .section > .default-content a { color: var(--primary); font-weight: 600; }
+main .section > .default-content a:hover { text-decoration: underline; }
+
 aem-sidekick { opacity: 0; }
 aem-sidekick[open="true"].is-ready { opacity: 1; }
 
