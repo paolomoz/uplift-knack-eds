@@ -3,7 +3,7 @@
    --grad-coral, --e-enter, --e-expo) are global in styles/styles.css. */
 
 .hero { background: var(--wash); padding: 72px 0 64px; overflow: hidden; }
-.hero .hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; }
+.hero .hero-grid { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; }
 .hero h1 { font-size: clamp(2.6rem, 5.2vw, 4.1rem); letter-spacing: -.02em; line-height: 1.08; font-weight: 700; }
 .hero h1 span { background: var(--grad-coral); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--primary); }
