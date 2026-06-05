@@ -28,16 +28,21 @@ export default async function decorate(block) {
     const center = document.createElement('div');
     center.className = 'center';
     const h2src = cell.querySelector('h2');
-    if (h2src && text(h2src)) {
+    const htext = h2src ? text(h2src) : '';
+    if (htext) {
       const h2 = document.createElement('h2');
-      h2.textContent = text(h2src);
+      h2.textContent = htext;
       center.append(h2);
     }
-    const lead = cell.querySelector('p');
-    if (lead && text(lead)) {
+    // lead/count: prefer a <p>, but DA unwraps a lone <p> to bare text, so
+    // fall back to the cell's own text (minus the heading).
+    const leadP = cell.querySelector('p');
+    let leadText = leadP ? text(leadP) : text(cell);
+    if (htext && !leadP) leadText = leadText.replace(htext, '').trim();
+    if (leadText) {
       const l = document.createElement('p');
       l.className = 'lead';
-      l.textContent = text(lead);
+      l.textContent = leadText;
       center.append(l);
     }
     if (center.childNodes.length) { frag.append(center); start = 1; }
