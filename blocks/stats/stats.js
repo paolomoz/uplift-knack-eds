@@ -1,11 +1,15 @@
 /**
- * stats — "Real outcomes, measured." — three big count-up-style stats
- * ($250k+ / 92% / 10x) with labels. Lifted from the stardust prototype
- * <div class="stats"> inside the Results section.
+ * stats — "Real outcomes, measured." — a centered eyebrow + heading over
+ * three big count-up-style stats ($250k+ / 92% / 10x) with labels. Lifted
+ * from the stardust prototype's Results section (.center header + .stats).
  *
- * Authoring rows (positional): one row per stat —
- *   cell 1: number (e.g. "$250k+")
- *   cell 2: label  (e.g. "saved per year")
+ * Authoring rows (positional):
+ *   Header rows have ONE cell each (optional, in order):
+ *     1: eyebrow text   (e.g. "Results")
+ *     2: heading text   (e.g. "Real outcomes, measured.")
+ *   Stat rows have TWO cells each — one row per stat:
+ *     cell 1: number (e.g. "$250k+")
+ *     cell 2: label  (e.g. "saved per year")
  *
  * Numbers are illustrative and render STATICALLY at their final values.
  * No JS count-up is required; an optional reduced-motion-safe count-up
@@ -59,10 +63,39 @@ export default async function decorate(block) {
   const rows = [...block.children];
   if (!rows.length) return;
 
+  const headerLines = [];
+  const statRows = [];
+  rows.forEach((row) => {
+    const cells = [...row.children];
+    if (cells.length >= 2) statRows.push(row);
+    else if (cells.length === 1) headerLines.push(text(cells[0]));
+  });
+
+  const frag = document.createDocumentFragment();
+
+  // ---- centered eyebrow + heading (matches the other section headers) ----
+  if (headerLines.some(Boolean)) {
+    const center = document.createElement('div');
+    center.className = 'center';
+    if (headerLines[0]) {
+      const eyebrow = document.createElement('p');
+      eyebrow.className = 'eyebrow';
+      eyebrow.textContent = headerLines[0];
+      center.append(eyebrow);
+    }
+    if (headerLines[1]) {
+      const h2 = document.createElement('h2');
+      h2.textContent = headerLines[1];
+      center.append(h2);
+    }
+    frag.append(center);
+  }
+
+  // ---- stat grid ----
   const grid = document.createElement('div');
   grid.className = 'stats-grid wrap';
 
-  rows.forEach((row) => {
+  statRows.forEach((row) => {
     const numCell = row.children[0];
     const labelCell = row.children[1];
     const num = text(numCell);
@@ -87,5 +120,6 @@ export default async function decorate(block) {
     animateCount(n);
   });
 
-  block.replaceChildren(grid);
+  frag.append(grid);
+  block.replaceChildren(frag);
 }
