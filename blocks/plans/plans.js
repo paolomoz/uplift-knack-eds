@@ -18,7 +18,9 @@ export default async function decorate(block) {
     const plan = document.createElement('div');
     plan.className = 'plan';
     const cta = ctaC && ctaC.querySelector('a');
-    const featured = !!(ctaC && ctaC.querySelector('strong'));
+    // ak.js decorateButton may already have unwrapped <strong><a> into
+    // <a class="btn-primary"> by the time this runs, so check both.
+    const featured = !!(ctaC && (ctaC.querySelector('strong') || (cta && /btn-primary/.test(cta.className))));
     if (featured) plan.classList.add('featured');
 
     const h3 = document.createElement('h3');
