@@ -1,0 +1,13 @@
+/* plans — pricing tiers. */
+.plans { padding: 56px 0; }
+.plans .plans-grid { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; align-items: stretch; }
+.plans .plan { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 30px 26px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--sm); }
+.plans .plan.featured { border-color: var(--primary); box-shadow: var(--lg); }
+.plans .plan h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; }
+.plans .plan .aud { color: var(--muted); font-size: .9rem; margin: 0; }
+.plans .plan .price { font-size: 2.4rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); }
+.plans .plan .price small { font-size: 1rem; font-weight: 600; color: var(--muted); }
+.plans .plan ul { list-style: none; margin: 4px 0; padding: 0; display: grid; gap: 10px; color: #3a3640; }
+.plans .plan ul li { padding-left: 24px; position: relative; }
+.plans .plan ul li::before { content: "✓"; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+.plans .plan a.btn { margin-top: auto; justify-content: center; }
