@@ -1,0 +1,8 @@
+/* hero-plain — centered page hero on the brand wash, no app mock. */
+.hero-plain { background: var(--wash); padding: 64px 0 56px; }
+.hero-plain .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; text-align: center; }
+.hero-plain .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--primary); }
+.hero-plain h1 { margin-top: 14px; font-size: clamp(2.2rem, 4.4vw, 3.4rem); letter-spacing: -.02em; line-height: 1.08; font-weight: 700; }
+.hero-plain h1 span { background: var(--grad-coral); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-plain .sub { font-size: 1.2rem; color: #4a454f; margin: 18px auto 26px; max-width: 620px; }
+.hero-plain .hero-cta { display: flex; gap: 18px; align-items: center; justify-content: center; flex-wrap: wrap; }

@@ -1,0 +1,76 @@
+/**
+ * cards — generic responsive card grid covering the migrated [cards] /
+ * [group] / [grid] sections (feature cards, checklists, related links).
+ *
+ * Authoring rows (positional):
+ *   Optional heading row: a SINGLE cell containing an <h2> (and optionally a
+ *     trailing <p> lead). Detected by the presence of <h2>.
+ *   Card rows: one per card. Either
+ *     [title, body]  — cell1 becomes <h3>, cell2 is rich body, or
+ *     [body]         — a single rich cell (preserved verbatim: p/ul/a).
+ */
+function text(el) { return el ? el.textContent.trim() : ''; }
+
+export default async function decorate(block) {
+  const rows = [...block.children];
+  if (!rows.length) return;
+  const frag = document.createDocumentFragment();
+
+  // ---- optional centered heading ----
+  let start = 0;
+  const firstCells = [...rows[0].children];
+  if (firstCells.length === 1 && firstCells[0].querySelector('h2')) {
+    const cell = firstCells[0];
+    const center = document.createElement('div');
+    center.className = 'center';
+    const h2 = document.createElement('h2');
+    h2.textContent = text(cell.querySelector('h2'));
+    center.append(h2);
+    const lead = cell.querySelector('p');
+    if (lead && text(lead)) {
+      const l = document.createElement('p');
+      l.className = 'lead';
+      l.textContent = text(lead);
+      center.append(l);
+    }
+    frag.append(center);
+    start = 1;
+  }
+
+  // ---- cards ----
+  const grid = document.createElement('div');
+  grid.className = 'cards-grid';
+  for (let i = start; i < rows.length; i += 1) {
+    const cells = [...rows[i].children];
+    if (!cells.length) continue;
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const twoCol = cells.length >= 2;
+    const titleCell = twoCol ? cells[0] : null;
+    const bodyCell = twoCol ? cells[1] : cells[0];
+
+    if (titleCell && text(titleCell)) {
+      const h3 = document.createElement('h3');
+      h3.textContent = text(titleCell);
+      card.append(h3);
+    }
+    if (bodyCell) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = bodyCell.innerHTML;
+      if (!tmp.querySelector('p, ul, ol, a, h3, h4')) {
+        if (text(bodyCell)) {
+          const p = document.createElement('p');
+          p.textContent = text(bodyCell);
+          card.append(p);
+        }
+      } else {
+        [...tmp.childNodes].forEach((n) => card.append(n.cloneNode(true)));
+      }
+    }
+    if (card.childNodes.length) grid.append(card);
+  }
+
+  frag.append(grid);
+  block.replaceChildren(frag);
+}

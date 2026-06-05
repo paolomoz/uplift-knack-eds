@@ -1,0 +1,12 @@
+/* cards — generic responsive card grid. */
+.cards { padding: 56px 0; }
+.cards .center { text-align: center; max-width: 680px; margin: 0 auto 40px; padding: 0 24px; }
+.cards .center h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); letter-spacing: -.02em; line-height: 1.1; font-weight: 700; }
+.cards .center .lead { margin-top: 10px; color: var(--muted); font-size: 1.05rem; }
+.cards .cards-grid { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+.cards .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 24px; box-shadow: var(--sm); }
+.cards .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.01em; }
+.cards .card p { color: var(--muted); margin: 0 0 8px; }
+.cards .card p:last-child { margin-bottom: 0; }
+.cards .card a { color: var(--primary); font-weight: 600; }
+.cards .card ul { margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 6px; }
