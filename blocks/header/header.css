@@ -1,11 +1,40 @@
-header.header { position: sticky; top: 0; z-index: 60; background: rgb(255 255 255 / 90%); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-header.header .fragment-content { max-width: var(--max); margin: 0 auto; }
-header.header .default-content { display: flex; align-items: center; gap: 34px; padding: 0 24px; min-height: 72px; }
-header.header p { margin: 0; }
+header.header { z-index: 60; }
+
+/* announcement strip — full-bleed, scrolls away above the sticky nav */
+header.header .header-promo .default-content {
+  background: var(--primary-dark);
+  color: #fff;
+  text-align: center;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: 10px 24px;
+}
+header.header .header-promo p { margin: 0; }
+header.header .header-promo strong { color: #ffd6ec; font-weight: 700; }
+
+/* nav row — sticky, centered to --max */
+header.header .header-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgb(255 255 255 / 90%);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+header.header .header-nav .default-content {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 0 24px;
+  min-height: 72px;
+}
+header.header .header-nav p { margin: 0; }
 header.header img { height: 30px; width: auto; }
-header.header ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
-header.header li a { font-size: .95rem; font-weight: 500; color: #3a3640; }
-header.header li a:hover { color: var(--primary); }
-header.header p:last-child { margin-left: auto; display: flex; gap: 18px; align-items: center; }
+header.header .header-nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
+header.header .header-nav li a { font-size: .95rem; font-weight: 500; color: #3a3640; }
+header.header .header-nav li a:hover { color: var(--primary); }
+header.header .header-nav p:last-child { margin-left: auto; display: flex; gap: 18px; align-items: center; }
 header.header a.btn { padding: 11px 22px; font-size: .95rem; }
-@media (max-width: 820px) { header.header ul { display: none; } }
+@media (max-width: 820px) { header.header .header-nav ul { display: none; } }

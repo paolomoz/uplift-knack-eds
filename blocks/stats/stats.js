@@ -65,10 +65,15 @@ export default async function decorate(block) {
 
   const headerLines = [];
   const statRows = [];
+  let storyCell = null;
   rows.forEach((row) => {
     const cells = [...row.children];
-    if (cells.length >= 2) statRows.push(row);
-    else if (cells.length === 1) headerLines.push(text(cells[0]));
+    if (cells.length >= 2) { statRows.push(row); return; }
+    const cell = cells[0];
+    if (!cell) return;
+    // A single-cell row carrying a blockquote (or a link) is the testimonial.
+    if (cell.querySelector('blockquote, a')) storyCell = cell;
+    else headerLines.push(text(cell));
   });
 
   const frag = document.createDocumentFragment();
@@ -121,5 +126,21 @@ export default async function decorate(block) {
   });
 
   frag.append(grid);
+
+  // ---- testimonial / story (optional) ----
+  if (storyCell) {
+    const story = document.createElement('div');
+    story.className = 'story';
+    const bq = storyCell.querySelector('blockquote');
+    if (bq) story.append(bq.cloneNode(true));
+    const link = storyCell.querySelector('a');
+    if (link) {
+      const a = link.cloneNode(true);
+      a.classList.add('link-sec');
+      story.append(a);
+    }
+    frag.append(story);
+  }
+
   block.replaceChildren(frag);
 }

@@ -15,6 +15,16 @@ export default async function init(el) {
   try {
     const fragment = await loadFragment(`${locale.prefix}${path}`);
     el.append(fragment);
+    // The fragment carries two sections: an announcement strip and the nav
+    // row. Tag them so the CSS can render a full-width promo bar above a
+    // centered, sticky nav. A single-section fragment is treated as nav.
+    const sections = [...el.querySelectorAll('.section')];
+    if (sections.length > 1) {
+      sections[0].classList.add('header-promo');
+      sections[sections.length - 1].classList.add('header-nav');
+    } else if (sections.length === 1) {
+      sections[0].classList.add('header-nav');
+    }
   } catch (e) {
     throw Error(e);
   }

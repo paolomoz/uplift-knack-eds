@@ -52,6 +52,29 @@
   font-weight: 600;
 }
 
+/* testimonial / story */
+.stats .story {
+  width: min(1180px, calc(100% - 48px));
+  margin: 44px auto 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.stats .story blockquote {
+  font-size: 1.25rem;
+  font-weight: 600;
+  max-width: 640px;
+  margin: 0;
+  color: var(--ink);
+}
+.stats .story a.link-sec { white-space: nowrap; }
+
 @media (width <= 900px) {
   .stats .stats-grid {
     grid-template-columns: 1fr;

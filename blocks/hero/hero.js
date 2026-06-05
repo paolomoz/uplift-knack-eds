@@ -45,9 +45,21 @@ export default async function decorate(block) {
   if (h1Cell) {
     const h1 = document.createElement('h1');
     h1.style.marginTop = '14px';
-    // Preserve authored inline markup (e.g. <span> for the gradient word).
+    // Preserve authored inline markup. The gradient word is authored as
+    // <em> (DA strips a bare styling-only <span>); convert it to the
+    // gradient <span>. Fall back to wrapping the known phrase so the
+    // brand gradient renders even if DA drops the inline emphasis too.
     const heading = h1Cell.querySelector('h1, h2, h3');
     h1.innerHTML = heading ? heading.innerHTML : h1Cell.innerHTML;
+    h1.querySelectorAll('em, i').forEach((em) => {
+      const span = document.createElement('span');
+      span.innerHTML = em.innerHTML;
+      em.replaceWith(span);
+    });
+    const GRAD = 'Watch it build.';
+    if (!h1.querySelector('span') && h1.textContent.includes(GRAD)) {
+      h1.innerHTML = h1.innerHTML.replace(GRAD, `<span>${GRAD}</span>`);
+    }
     copy.append(h1);
   }
 
@@ -62,6 +74,9 @@ export default async function decorate(block) {
     const cta = document.createElement('div');
     cta.className = 'hero-cta';
     [...ctaCell.childNodes].forEach((n) => cta.append(n.cloneNode(true)));
+    // Undecorated links (the secondary "Talk to sales →") render as a
+    // text link, matching the prototype's .link-sec affordance.
+    cta.querySelectorAll('a:not(.btn)').forEach((a) => a.classList.add('link-sec'));
     copy.append(cta);
   }
 
