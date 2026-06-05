@@ -85,9 +85,9 @@ export default async function decorate(block) {
   trust.innerHTML = '<span class="stars">★★★★★</span> Trusted by <b>100,000+</b> users worldwide';
   copy.append(trust);
 
-  // ---- live-app mock column (static brand motif) ----
+  // ---- live-app mock column (the "watch it build" centerpiece) ----
   const app = document.createElement('div');
-  app.className = 'app';
+  app.className = 'app build-anim';
   app.innerHTML = `
     <div class="app-bar">
       <span class="d"></span><span class="d"></span><span class="d"></span>
@@ -95,10 +95,11 @@ export default async function decorate(block) {
       <span class="live"><span class="pulse"></span> Live</span>
     </div>
     <div class="app-body">
+      <div class="sweep"></div>
       <div class="kpis">
         <div class="kpi"><div class="l">Open work orders</div><div class="v mag">248</div></div>
         <div class="kpi"><div class="l">Saved / yr</div><div class="v pink">$250k+</div></div>
-        <div class="kpi"><div class="l">SLA met</div><div class="v">92%</div><div class="bar"><i style="--fill:92%;width:92%"></i></div></div>
+        <div class="kpi"><div class="l">SLA met</div><div class="v">92%</div><div class="bar"><i></i></div></div>
       </div>
       <table class="rows">
         <thead><tr><th>Record</th><th>Owner</th><th>Status</th></tr></thead>
@@ -113,4 +114,47 @@ export default async function decorate(block) {
 
   grid.append(copy, app);
   block.replaceChildren(grid);
+  animateApp(app);
+}
+
+// Count up a "$250k+" / "92%" / "248" value from 0 to its final text.
+function heroCountUp(el) {
+  const final = el.textContent;
+  const m = final.match(/^(\D*)([\d.,]+)(\D*)$/);
+  if (!m) return;
+  const [, pre, num, suf] = m;
+  const target = parseFloat(num.replace(/,/g, ''));
+  if (!Number.isFinite(target)) return;
+  const dur = 1100;
+  const t0 = performance.now();
+  const tick = (t) => {
+    const p = Math.min(1, (t - t0) / dur);
+    const e = 1 - (1 - p) ** 3;
+    el.textContent = `${pre}${Math.round(target * e)}${suf}`;
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = final;
+  };
+  requestAnimationFrame(tick);
+}
+
+// The live-systems choreography: KPIs count up, the SLA bar fills, and the
+// records flip in on a stagger — the app appears to assemble itself. All
+// neutralized under prefers-reduced-motion (final values shown statically).
+function animateApp(app) {
+  const bar = app.querySelector('.bar i');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (bar) bar.style.width = '92%';
+    return;
+  }
+  app.querySelectorAll('.kpi .v').forEach((el) => { setTimeout(() => heroCountUp(el), 600); });
+  if (bar) {
+    bar.style.width = '0%';
+    setTimeout(() => { bar.style.transition = 'width 1s var(--e-enter)'; bar.style.width = '92%'; }, 700);
+  }
+  [...app.querySelectorAll('table.rows tbody tr')].forEach((r, i) => {
+    r.animate(
+      [{ opacity: 0, transform: 'translateY(14px) rotateX(8deg)' }, { opacity: 1, transform: 'none' }],
+      { duration: 600, delay: 300 + i * 120, easing: 'cubic-bezier(.25,.46,.45,.94)', fill: 'forwards' },
+    );
+  });
 }

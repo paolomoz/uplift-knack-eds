@@ -64,6 +64,15 @@ main div.section { display: unset; }
 aem-sidekick { opacity: 0; }
 aem-sidekick[open="true"].is-ready { opacity: 1; }
 
+/* --- scroll-reveal (live-systems register) ---
+   Applied by scripts/motion.js to below-the-fold sections only, so there
+   is no flash on visible content. The class is added solely when motion is
+   enabled (JS on, motion allowed); above-the-fold and reduced-motion stay
+   visible. */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--e-enter), transform .6s var(--e-enter); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+
 /* --- global button system (EDS link-decorator conventions, ak.js) --- */
 a.btn {
   display: inline-flex; align-items: center; gap: .5rem;
