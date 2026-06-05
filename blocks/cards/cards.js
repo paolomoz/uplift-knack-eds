@@ -46,9 +46,27 @@ export default async function decorate(block) {
     const card = document.createElement('div');
     card.className = 'card';
 
-    const twoCol = cells.length >= 2;
-    const titleCell = twoCol ? cells[0] : null;
-    const bodyCell = twoCol ? cells[1] : cells[0];
+    let iconCell;
+    let titleCell;
+    let bodyCell;
+    if (cells.length >= 3) { [iconCell, titleCell, bodyCell] = cells; }
+    else if (cells.length === 2) { [titleCell, bodyCell] = cells; }
+    else { [bodyCell] = cells; }
+
+    // optional card image — rendered here (block JS) so EDS's content media
+    // pipeline doesn't rewrite/break the src; missing files hide gracefully.
+    if (iconCell) {
+      const m = text(iconCell).match(/^(icon|media):(.+)$/);
+      if (m) {
+        const im = document.createElement('img');
+        im.src = m[2];
+        im.loading = 'lazy';
+        im.alt = text(titleCell) || '';
+        im.className = m[1] === 'media' ? 'card-media' : 'card-icon';
+        im.addEventListener('error', () => im.remove());
+        card.append(im);
+      }
+    }
 
     if (titleCell && text(titleCell)) {
       const h3 = document.createElement('h3');

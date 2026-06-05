@@ -5,6 +5,12 @@
 .cards .center .lead { margin-top: 10px; color: var(--muted); font-size: 1.05rem; }
 .cards .cards-grid { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
 .cards .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 24px; box-shadow: var(--sm); }
+.cards .card .card-icon { width: 44px; height: 44px; margin-bottom: 14px; display: block; }
+.cards .card .card-media { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; margin: -4px 0 16px; display: block; border: 1px solid var(--border); }
+
+/* listing variant: left-aligned group heading + count, full-width measure */
+.cards.listing .center { text-align: left; max-width: var(--max); margin: 0 auto 24px; }
+.cards.listing .center .lead { color: var(--muted); font-size: .95rem; margin-top: 4px; }
 .cards .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.01em; }
 .cards .card p { color: var(--muted); margin: 0 0 8px; }
 .cards .card p:last-child { margin-bottom: 0; }
