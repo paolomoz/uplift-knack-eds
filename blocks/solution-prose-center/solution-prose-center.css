@@ -1,0 +1,109 @@
+/* solution-prose-center — lifted verbatim from the stardust prototype's
+   .center / .cards3 / .vcard rules PLUS the `.why` overrides
+   (.why .cards3 .vcard .ic { background: var(--primary) } and the why intro
+   paragraph) on solution-proposed.html, rescoped under .solution-prose-center.
+   Tokens are global; not redefined. */
+
+.solution-prose-center {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 84px 24px;
+}
+
+.solution-prose-center .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.solution-prose-center h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+/* the prototype's `.why h2 + .center` had margin-top:0; here the intro p sits
+   inside .center directly under the h2, matching the prototype's inline style
+   (margin-top:14px; font-size:1.05rem). */
+.solution-prose-center .center p {
+  margin-top: 14px;
+  font-size: 1.05rem;
+  color: #3a3640;
+}
+
+.solution-prose-center .cards3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.solution-prose-center .vcard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: var(--sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.solution-prose-center .vcard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--md);
+}
+
+/* `.why` icon chips use the solid brand-primary fill (not the coral gradient). */
+.solution-prose-center .vcard .ic {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--primary);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.solution-prose-center .vcard .ic svg {
+  width: 24px;
+  height: 24px;
+}
+
+.solution-prose-center .vcard h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.solution-prose-center .vcard p {
+  font-size: 0.96rem;
+  color: #4a454f;
+  margin: 0;
+}
+
+.solution-prose-center.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s var(--e-enter), transform 0.6s var(--e-enter);
+}
+
+.solution-prose-center.reveal-ready .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .solution-prose-center .cards3 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .solution-prose-center { padding: 60px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-prose-center .vcard { transition: none; }
+  .solution-prose-center.reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
+}

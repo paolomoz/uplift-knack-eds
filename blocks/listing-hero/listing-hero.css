@@ -1,0 +1,65 @@
+/* listing-hero — Solutions listing hero. CSS lifted verbatim from the
+   stardust prototype's inline <style> for section.lhero, rescoped under
+   .listing-hero. Tokens (--wash, --border, --sm, --muted, --ink) are global
+   in styles/styles.css; do not redefine. */
+
+.listing-hero {
+  background: var(--wash);
+  padding: 64px 0 28px;
+  text-align: center;
+}
+
+.listing-hero .wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.listing-hero h1 {
+  font-size: clamp(2.4rem, 4.6vw, 3.4rem);
+  margin: 8px auto 0;
+  max-width: 18ch;
+}
+
+.listing-hero .grad-text {
+  background: var(--grad-coral);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.listing-hero .lead {
+  margin: 16px auto 0;
+  max-width: 560px;
+  color: var(--muted);
+}
+
+.listing-hero .lsearch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 480px;
+  margin: 26px auto 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: var(--sm);
+}
+
+.listing-hero .lsearch svg {
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+  flex: none;
+}
+
+.listing-hero .lsearch input {
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 1rem;
+  width: 100%;
+  background: none;
+  color: var(--ink);
+}

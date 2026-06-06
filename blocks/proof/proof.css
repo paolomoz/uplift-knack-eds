@@ -1,0 +1,32 @@
+/* proof — lifted verbatim from the stardust prototype's .proof / .logos
+   rules (solution-proposed.html), rescoped under .proof. The prototype's
+   .proof section carried the `wrap` max-width, so it is folded in here. */
+
+.proof {
+  padding: 48px 0;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.proof p {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.proof .logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 40px;
+  align-items: center;
+  filter: grayscale(1);
+  opacity: .72;
+}
+
+.proof .logos span {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #7a7a7a;
+}

@@ -1,0 +1,78 @@
+/* solution-hero — lifted from the stardust prototype <section class="hero">
+   (solution-proposed.html), rescoped under .solution-hero. This hero has no
+   app mock, so the two-column .hero-grid collapses to a single text column.
+   Tokens (--wash, --primary, --muted, --accent) are global; not redefined. */
+
+.solution-hero {
+  background: var(--wash);
+  padding: 64px 0 64px;
+  overflow: hidden;
+}
+
+.solution-hero .wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.solution-hero .crumb {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.solution-hero .crumb a:hover { color: var(--primary); }
+.solution-hero .crumb span { color: var(--primary); }
+
+.solution-hero .eyebrow {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.solution-hero h1 {
+  margin-top: 14px;
+  font-size: clamp(2.4rem, 5vw, 3.85rem);
+  letter-spacing: -.02em;
+  line-height: 1.08;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.solution-hero h1 span { color: var(--primary); }
+
+.solution-hero .sub {
+  font-size: 1.2rem;
+  color: #4a454f;
+  margin: 22px 0 30px;
+  max-width: 520px;
+}
+
+.solution-hero .hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.solution-hero .trust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.solution-hero .stars {
+  color: #ff8a3d;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 640px) {
+  .solution-hero { padding: 40px 0 48px; }
+  .solution-hero .hero-cta { gap: 16px; }
+}

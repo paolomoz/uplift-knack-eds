@@ -1,0 +1,110 @@
+/* sgroup — solution group (heading + count, grid of whole-card links).
+   CSS lifted verbatim from the stardust prototype's inline <style> for
+   section.sgroup / .scards / .scard, rescoped under .sgroup. Tokens
+   (--border, --muted, --ink, --primary, --md) are global; do not redefine. */
+
+.sgroup {
+  padding: 54px 0 8px;
+}
+
+.sgroup .wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sgroup .sgroup-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.sgroup .sgroup-head h2 {
+  font-size: 1.5rem;
+}
+
+.sgroup .sgroup-head .muted {
+  color: var(--muted);
+}
+
+.sgroup .scards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.sgroup .scard {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  transition: .18s;
+  position: relative;
+}
+
+.sgroup .scard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--md);
+  border-color: #e6c9e0;
+}
+
+.sgroup .scard-ic {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fdeef8;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+}
+
+.sgroup .scard-ic img {
+  width: 28px;
+  height: 28px;
+}
+
+.sgroup .scard-ic svg {
+  width: 24px;
+  height: 24px;
+  color: var(--primary);
+}
+
+.sgroup .scard-tx b {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+
+.sgroup .scard-tx span {
+  display: block;
+  color: var(--muted);
+  font-size: .9rem;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.sgroup .scard-go {
+  margin-top: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: .88rem;
+}
+
+@media (max-width: 900px) {
+  .sgroup .scards { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .sgroup .scards { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgroup .scard { transition: none; }
+  .sgroup .scard:hover { transform: none; }
+}

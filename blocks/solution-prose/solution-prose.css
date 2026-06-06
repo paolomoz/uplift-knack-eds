@@ -1,0 +1,97 @@
+/* solution-prose — lifted verbatim from the stardust prototype's .center /
+   .cards3 / .vcard rules (the "One platform for every job" section on
+   solution-proposed.html), rescoped under .solution-prose. Tokens are global. */
+
+.solution-prose {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 84px 24px;
+}
+
+.solution-prose .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.solution-prose h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.solution-prose .cards3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.solution-prose .vcard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: var(--sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.solution-prose .vcard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--md);
+}
+
+.solution-prose .vcard .ic {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--grad-coral);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.solution-prose .vcard .ic svg {
+  width: 24px;
+  height: 24px;
+}
+
+.solution-prose .vcard h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.solution-prose .vcard p {
+  font-size: 0.96rem;
+  color: #4a454f;
+  margin: 0;
+}
+
+.solution-prose.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s var(--e-enter), transform 0.6s var(--e-enter);
+}
+
+.solution-prose.reveal-ready .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .solution-prose .cards3 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .solution-prose { padding: 60px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-prose .vcard { transition: none; }
+  .solution-prose.reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
+}

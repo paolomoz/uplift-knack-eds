@@ -1,0 +1,43 @@
+/* quote-band — lifted verbatim from the stardust prototype's .quote-band
+   rules (solution-proposed.html), rescoped under .quote-band. The .qw inner
+   reproduces the prototype's centered max-width wrapper. Tokens (--surface,
+   --ink, --primary) are global; not redefined. */
+
+.quote-band {
+  background: var(--surface);
+  padding: 84px 0;
+}
+
+.quote-band .qw {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.quote-band .eyebrow {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.quote-band blockquote {
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.quote-band cite {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+@media (max-width: 640px) {
+  .quote-band { padding: 60px 0; }
+}
