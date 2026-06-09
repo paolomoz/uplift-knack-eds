@@ -1,0 +1,89 @@
+/* casestudy-split — "The challenge": centered header + 2-col prose/pullquote.
+   Lifted from prototype section.challenge (.center, .split, .prose, .pullquote)
+   and rescoped under .casestudy-split. The prototype's section padding
+   (section{padding:84px 0}) is reproduced on the block. Tokens are global. */
+
+.casestudy-split { padding: 84px 0; }
+
+.casestudy-split .wrap {
+  max-width: var(--max, 1180px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.casestudy-split .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+
+.casestudy-split .eyebrow {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.casestudy-split .center h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -.02em;
+  line-height: 1.08;
+  margin-top: 10px;
+}
+
+.casestudy-split .split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.casestudy-split .prose p {
+  font-size: 1.0625rem;
+  color: #3a3640;
+  margin-bottom: 18px;
+  max-width: 62ch;
+}
+
+.casestudy-split .prose p:last-child { margin-bottom: 0; }
+
+.casestudy-split .pullquote {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 18px;
+  padding: 38px 34px;
+  box-shadow: var(--lg);
+  align-self: center;
+}
+
+.casestudy-split .pullquote blockquote {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+  letter-spacing: -.01em;
+}
+
+.casestudy-split .pullquote cite {
+  display: block;
+  margin-top: 20px;
+  font-style: normal;
+  font-size: .95rem;
+  font-weight: 600;
+  color: #ffd6ec;
+}
+
+.casestudy-split .pullquote cite span {
+  color: rgb(255 255 255 / 72%);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .casestudy-split .split { grid-template-columns: 1fr; }
+  .casestudy-split .pullquote { order: -1; }
+}
+
+@media (max-width: 560px) {
+  .casestudy-split { padding: 60px 0; }
+}

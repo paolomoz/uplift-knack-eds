@@ -1,0 +1,98 @@
+/* casestudy-cards — "The solution": centered header + 3-up .ccard grid.
+   Lifted from prototype section.solution (.center, .grid6, .ccard) and
+   rescoped under .casestudy-cards. Section padding reproduces the prototype's
+   section{padding:84px 0}. Tokens (--border, --grad-coral, --muted, --sm,
+   --md) are global. */
+
+.casestudy-cards { padding: 84px 0; }
+
+.casestudy-cards .wrap {
+  max-width: var(--max, 1180px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.casestudy-cards .center {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.casestudy-cards .eyebrow {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.casestudy-cards .center h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -.02em;
+  line-height: 1.08;
+  margin-top: 10px;
+}
+
+.casestudy-cards .center .sub {
+  margin-top: 14px;
+  font-size: 1.05rem;
+  color: #3a3640;
+}
+
+.casestudy-cards .grid6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.casestudy-cards .ccard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: var(--sm);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.casestudy-cards .ccard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--md);
+}
+
+.casestudy-cards .ccard .ic {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--grad-coral);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.casestudy-cards .ccard h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+
+.casestudy-cards .ccard p {
+  font-size: .94rem;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .casestudy-cards .grid6 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .casestudy-cards { padding: 60px 0; }
+  .casestudy-cards .grid6 { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .casestudy-cards .ccard,
+  .casestudy-cards .ccard:hover { transition: none; transform: none; }
+}
