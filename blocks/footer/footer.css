@@ -10,9 +10,11 @@ footer.footer .foot-grid {
 }
 footer.footer img { height: 28px; filter: brightness(0) invert(1); margin-bottom: 14px; }
 footer.footer .foot-brand p { margin: 0; max-width: 260px; color: #8a8690; }
-footer.footer h4 {
+footer.footer .foot-title {
   color: #fff;
   font-size: .85rem;
+  font-weight: 700;
+  line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: .08em;
   margin: 0 0 14px;

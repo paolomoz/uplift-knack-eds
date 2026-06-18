@@ -27,7 +27,13 @@ function buildColumns(el) {
       inColumns = true;
       current = document.createElement('div');
       current.className = 'foot-col';
-      current.append(node);
+      // Authored as H4, but rendered as H2 so the footer's column titles
+      // don't skip a heading level after the page's H2 sections (WCAG
+      // heading-order). Styling is by .foot-title, not the tag.
+      const title = document.createElement('h2');
+      title.className = 'foot-title';
+      title.textContent = node.textContent.trim();
+      current.append(title);
       grid.append(current);
     } else if (node.tagName === 'UL') {
       current.append(node);
