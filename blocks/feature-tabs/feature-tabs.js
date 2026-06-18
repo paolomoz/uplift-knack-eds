@@ -64,14 +64,16 @@ export default async function decorate(block) {
   const panels = [];
 
   // Product screenshots are static brand assets in the EDS repo. Referenced
-  // directly (no EDS media optimization) so they always resolve.
+  // directly (no EDS media optimization) so they always resolve. Intrinsic
+  // width/height ship on each <img> so the browser reserves the right space
+  // before the (lazy) bytes arrive — zero CLS.
   const SHOTS = [
-    '/assets/media/screenshot-database-C8tkHKNi-5612.webp',
-    '/assets/media/screenshot-ai-IJ7IjnkO-3768.webp',
-    '/assets/media/screenshot-automate-zD7X5tm--c3fc.webp',
-    '/assets/media/screenshot-pages-BVcTJAC6-7647.webp',
-    '/assets/media/screenshot-users-B_MvJKAs-ee5b.webp',
-    '/assets/media/screenshot-publish-DR61zeJY-6a58.webp',
+    { src: '/assets/media/screenshot-database-C8tkHKNi-5612.webp', w: 1920, h: 1258 },
+    { src: '/assets/media/screenshot-ai-IJ7IjnkO-3768.webp', w: 1920, h: 1200 },
+    { src: '/assets/media/screenshot-automate-zD7X5tm--c3fc.webp', w: 1440, h: 900 },
+    { src: '/assets/media/screenshot-pages-BVcTJAC6-7647.webp', w: 1920, h: 1200 },
+    { src: '/assets/media/screenshot-users-B_MvJKAs-ee5b.webp', w: 1920, h: 1258 },
+    { src: '/assets/media/screenshot-publish-DR61zeJY-6a58.webp', w: 1920, h: 1200 },
   ];
 
   tabRows.forEach((row, i) => {
@@ -118,7 +120,9 @@ export default async function decorate(block) {
     panel.append(copy);
     if (shot) {
       const im = document.createElement('img');
-      im.src = shot;
+      im.src = shot.src;
+      im.width = shot.w;
+      im.height = shot.h;
       im.loading = 'lazy';
       im.alt = panelH3 || label;
       panel.append(im);
