@@ -24,7 +24,10 @@
 .hero .app-body { padding: 18px; position: relative; }
 /* "watch it build" shimmer sweeping across the live-app mock */
 .hero .app-body .sweep { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(100deg, transparent 30%, rgba(255,52,154,.10) 50%, transparent 70%); transform: translateX(-120%); }
-.hero .app.build-anim .sweep { animation: hero-sweep 5.4s var(--e-enter) 2.5s infinite; }
+/* One-time build flourish (was infinite, which kept the above-the-fold
+   viewport churning forever and inflated Speed Index). `forwards` parks it
+   off-screen so the hero reaches a stable final frame ~1.6s in. */
+.hero .app.build-anim .sweep { animation: hero-sweep 1.3s var(--e-enter) .35s 1 forwards; }
 @keyframes hero-sweep { 0% { transform: translateX(-120%); } 60%, 100% { transform: translateX(120%); } }
 .hero .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
 .hero .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }

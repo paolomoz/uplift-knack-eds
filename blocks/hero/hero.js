@@ -125,7 +125,7 @@ function heroCountUp(el) {
   const [, pre, num, suf] = m;
   const target = parseFloat(num.replace(/,/g, ''));
   if (!Number.isFinite(target)) return;
-  const dur = 1100;
+  const dur = 650;
   const t0 = performance.now();
   const tick = (t) => {
     const p = Math.min(1, (t - t0) / dur);
@@ -146,15 +146,17 @@ function animateApp(app) {
     if (bar) bar.style.width = '92%';
     return;
   }
-  app.querySelectorAll('.kpi .v').forEach((el) => { setTimeout(() => heroCountUp(el), 600); });
+  // Timeline kept short so the above-the-fold mock settles ~1s after paint
+  // (longer choreography inflates Speed Index without adding much).
+  app.querySelectorAll('.kpi .v').forEach((el) => { setTimeout(() => heroCountUp(el), 200); });
   if (bar) {
     bar.style.width = '0%';
-    setTimeout(() => { bar.style.transition = 'width 1s var(--e-enter)'; bar.style.width = '92%'; }, 700);
+    setTimeout(() => { bar.style.transition = 'width .6s var(--e-enter)'; bar.style.width = '92%'; }, 250);
   }
   [...app.querySelectorAll('table.rows tbody tr')].forEach((r, i) => {
     r.animate(
       [{ opacity: 0, transform: 'translateY(14px) rotateX(8deg)' }, { opacity: 1, transform: 'none' }],
-      { duration: 600, delay: 300 + i * 120, easing: 'cubic-bezier(.25,.46,.45,.94)', fill: 'forwards' },
+      { duration: 380, delay: 120 + i * 70, easing: 'cubic-bezier(.25,.46,.45,.94)', fill: 'forwards' },
     );
   });
 }
