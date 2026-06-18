@@ -53,6 +53,15 @@ body.session { font-family: var(--font-body); }
 
 h1, h2, h3, h4 { letter-spacing: -.02em; line-height: 1.1; font-weight: 700; }
 
+/* Reserve header height before the nav fragment loads, so the async promo
+   strip + sticky nav row don't shift main down (CLS). Targets the bare
+   <header> tag because the `.header` class is only added once the block
+   decorates — too late for first paint. Heights = ~72px nav row + promo
+   strip (one line desktop / two lines mobile). Over-reserving is safe: a
+   min-height floor only ever leaves whitespace, never causes a shift. */
+header { min-height: 116px; }
+@media (max-width: 700px) { header { min-height: 140px; } }
+
 /* --- EDS section scaffold --- */
 main > div,
 .has-template,
