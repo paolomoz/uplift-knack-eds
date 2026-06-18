@@ -67,6 +67,14 @@ main > div,
 .has-template,
 div[data-status] { display: none; }
 main div.section { display: unset; }
+/* Keep a section hidden WHILE its blocks decorate (data-status is present),
+   then reveal it fully-styled in a single paint once ak.js deletes the
+   status. Without this the section shows raw authored content immediately
+   (the `main div.section` rule outranks the `div[data-status]` hide), so it
+   reflows hard as each block's JS/CSS loads — the dominant CLS source.
+   This selector (0,2,2) outranks `main div.section` (0,1,2), so the hide
+   wins until the status is gone. */
+main > div.section[data-status] { display: none; }
 .section > .default-content-wrapper,
 .section > .block-content { display: block; }
 
