@@ -17,7 +17,8 @@
 .hero .app-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); background: #fbf7fb; }
 .hero .app-bar .d { width: 11px; height: 11px; border-radius: 50%; background: #e7c9e1; }
 .hero .app-bar .title { margin-left: 10px; font-weight: 700; font-size: .85rem; color: var(--primary); }
-.hero .app-bar .live { margin-left: auto; display: flex; align-items: center; gap: 7px; font-size: .72rem; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: .06em; }
+/* #126e34 (was #16a34a) clears WCAG AA on the light app-bar (~6:1). */
+.hero .app-bar .live { margin-left: auto; display: flex; align-items: center; gap: 7px; font-size: .72rem; font-weight: 700; color: #126e34; text-transform: uppercase; letter-spacing: .06em; }
 .hero .app-bar .pulse { width: 9px; height: 9px; border-radius: 50%; background: #16c784; animation: hero-pulse 1.6s var(--e-enter) infinite; }
 @keyframes hero-pulse { 0% { box-shadow: 0 0 0 0 rgba(22, 199, 132, .5); } 70% { box-shadow: 0 0 0 8px rgba(22, 199, 132, 0); } 100% { box-shadow: 0 0 0 0 rgba(22, 199, 132, 0); } }
 .hero .app-body { padding: 18px; position: relative; }
@@ -37,9 +38,10 @@
 .hero table.rows th { text-align: left; color: var(--muted); font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; padding: 8px 10px; border-bottom: 1px solid var(--border); }
 .hero table.rows td { padding: 9px 10px; border-bottom: 1px solid #f1edf1; }
 .hero .pill-s { font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 99px; }
-.hero .s-live { background: #e6f8ef; color: #16a34a; }
+/* Status-pill text darkened to clear WCAG AA on its tinted background. */
+.hero .s-live { background: #e6f8ef; color: #126e34; }
 .hero .s-build { background: #fdeef8; color: var(--primary); }
-.hero .s-queue { background: #fff3e6; color: #c2710c; }
+.hero .s-queue { background: #fff3e6; color: #b45309; }
 .hero .rowdot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #16c784; margin-right: 7px; vertical-align: middle; animation: hero-pulse 1.6s var(--e-enter) infinite; }
 
 @media (max-width: 900px) {

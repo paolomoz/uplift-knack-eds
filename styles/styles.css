@@ -24,8 +24,8 @@
 
 :root {
   --bg: #fff; --surface: #fafafa; --surface2: #f5f3f5;
-  --ink: #1a181d; --muted: #75787b;
-  --primary: #982a86; --primary-dark: #821570; --accent: #ff349a; --coral: #fa816e;
+  --ink: #1a181d; --muted: #696c70; /* darkened from #75787b for WCAG AA (5.1:1 on surface) */
+  --primary: #982a86; --primary-dark: #821570; --accent: #ff349a; --cta: #d61f7a; --coral: #fa816e;
   --border: #e9e5e9;
   --grad-brand: linear-gradient(120deg, #982a86 0%, #e61875 55%, #fa816e 100%);
   --grad-coral: linear-gradient(90deg, #982a86 0%, #fa816e 100%);
@@ -108,8 +108,11 @@ a.btn {
   border: 1.5px solid transparent; cursor: pointer;
   transition: transform .18s ease, background .18s, border-color .18s, box-shadow .18s;
 }
-a.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 6px 18px rgba(255,52,154,.32); }
-a.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(255,52,154,.4); }
+/* --cta is a darker pink than --accent so white button text clears WCAG AA
+   (4.84:1 vs the neon accent's 3.38:1). The neon --accent stays for
+   decorative/large uses (KPI figures, etc.) where AA large-text applies. */
+a.btn-primary { background: var(--cta); color: #fff; border-color: var(--cta); box-shadow: 0 6px 18px rgba(214,31,122,.32); }
+a.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(214,31,122,.4); }
 a.btn-secondary { background: #fff; color: var(--ink); border-color: var(--border); }
 a.btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
 /* on dark / gradient sections, primary inverts to white */
